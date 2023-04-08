@@ -1,10 +1,14 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils'
 
-const returnWhatIPassIn = (t: unknown) => {
-  return t;
-};
+// normal function declaration
+// function returnWhatIPassIn<T>(t: t): t {}
 
-const one = returnWhatIPassIn(1);
-const matt = returnWhatIPassIn("matt");
+// My solution: array function declaration is bit different
+const returnWhatIPassIn = <T>(t: T): T => {
+  return t
+}
 
-type tests = [Expect<Equal<typeof one, 1>>, Expect<Equal<typeof matt, "matt">>];
+const one = returnWhatIPassIn(1)
+const matt = returnWhatIPassIn('matt')
+
+type tests = [Expect<Equal<typeof one, 1>>, Expect<Equal<typeof matt, 'matt'>>]
